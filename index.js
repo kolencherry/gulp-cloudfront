@@ -16,6 +16,9 @@ module.exports = function(options) {
             gutil.log('gulp-cloudfront:', 'Root directory [', options.dirRoot, ']');
             first = !first;
         }
+        
+        if(file.s3.state==='delete')
+            return callback(null, file);
 
         // Update the default root object once we've found the index.html file
         var filename = file.path.substr(options.dirRoot.length);
